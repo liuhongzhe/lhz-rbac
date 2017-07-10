@@ -17,7 +17,11 @@ export class ApplicationDefine extends Define<ApplicationModel, ApplicationInsta
                 type: Sequelize.STRING(50),
                 allowNull: false
             },
-            token: {
+            key: {
+                type: Sequelize.STRING(50),
+                allowNull: false
+            },
+            secret: {
                 type: Sequelize.STRING(50),
                 allowNull: false
             }

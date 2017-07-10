@@ -7,7 +7,7 @@ import { Attribute } from '../storage/attribute/attribute';
 export abstract class ModelController<TModel extends Sequelize.Model<TInstance, TAttribute>, TInstance extends Sequelize.Instance<TAttribute>, TAttribute extends Attribute> extends Controller {
     protected model: TModel;
 
-    constructor(protected modelName: string) {
+    constructor(protected modelName: string, protected likeColumns?: Array<string>, protected findOrder?: string | Array<Array<string>>) {
         super();
         if (this.rbacStorage.sequelize.isDefined(modelName)) {
             this.model = <TModel>this.rbacStorage.sequelize.model<TInstance, TAttribute>(modelName);
@@ -84,5 +84,32 @@ export abstract class ModelController<TModel extends Sequelize.Model<TInstance, 
         else {
             res.send(new restify.InternalError('Id null error.'));
         }
+    }
+
+    public find(req: restify.Request, res: restify.Response) {
+        let searchText = this.getRequestSearchText(req);
+        let fo: Sequelize.FindOptions = {};
+        if (searchText && this.likeColumns) {
+            let whereItems = [];
+            this.likeColumns.forEach(column => {
+                let item = {};
+                item[column] = { '$like': '%' + searchText + '%' }
+                whereItems.push(item);
+            });
+            if (whereItems.length > 0) {
+                fo.where = {
+                    '$or': whereItems
+                };
+            }
+        }
+        let pagination = this.buildPaginationFindOptions(req, fo);
+        if (this.findOrder) {
+            fo.order = this.findOrder;
+        }
+        this.model.findAndCountAll(fo).then(ms => {
+            res.send(ms);
+        }).catch(e => {
+            res.send(new restify.InternalError('Find error.Error:' + e));
+        });
     }
 }

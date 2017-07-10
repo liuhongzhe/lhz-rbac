@@ -50,7 +50,7 @@ export abstract class Controller {
         return pagination;
     }
 
-    protected buildPaginationFindOptions(req: restify.Request, findOptions: Sequelize.FindOptions = null, sizeName: string = null, indexName: string = null) {
+    protected buildPaginationFindOptions(req: restify.Request, findOptions: Sequelize.FindOptions, sizeName: string = null, indexName: string = null) {
         let pagination = this.getRequestPagination(req);
         if (pagination) {
             if (pagination.size) {

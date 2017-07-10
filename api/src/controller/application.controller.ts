@@ -3,4 +3,8 @@ import { ApplicationModel } from '../storage/model/application.model';
 import { ApplicationInstance } from '../storage/instance/application.instance';
 import { ApplicationAttribute } from '../storage/attribute/application.attribute';
 
-export class ApplicationController extends ModelController<ApplicationModel, ApplicationInstance, ApplicationAttribute> { }
+export class ApplicationController extends ModelController<ApplicationModel, ApplicationInstance, ApplicationAttribute> {
+    constructor(protected modelName) {
+        super(modelName, ['name', 'key', 'secret'], [['name', 'asc']]);
+    }
+}

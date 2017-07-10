@@ -5,10 +5,12 @@ var ct = require('../crud-test.js');
 var entity = {
     id: uuid.v1(),
     name: 'atName',
-    token: 'atToken'
+    key: 'atKey',
+    secret: 'atSecret'
 };
 var change = {
     name: 'AtName',
-    token: 'AtToken'
+    key: 'AtKey',
+    secret: 'AtSecret'
 };
 ct.crudTest('application', entity, change);
