@@ -4,9 +4,11 @@ var ct = require('../crud-test.js');
 
 var entity = {
     id: uuid.v1(),
-    name: 'atName'
+    name: 'atName',
+    path: 'atPath'
 };
 var change = {
-    name: 'AtName'
+    name: 'AtName',
+    path: 'AtPath'
 };
-ct.crudTest('application', entity, change);
+ct.crudTest('menu', entity, change);

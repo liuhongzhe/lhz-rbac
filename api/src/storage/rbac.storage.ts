@@ -1,6 +1,10 @@
 import * as Sequelize from 'sequelize';
 
 import { config } from '../config';
+import { AdminDefine } from './define/admin.define';
+import { AdminModel } from './model/admin.model';
+import { MenuDefine } from './define/menu.define';
+import { MenuModel } from './model/menu.model';
 import { RegionDefine } from './define/region.define';
 import { RegionModel } from './model/region.model';
 import { ApplicationDefine } from './define/application.define';
@@ -14,6 +18,8 @@ import { RoleModel } from './model/role.model';
 
 export class RbacStorage {
     sequelize: Sequelize.Sequelize;
+    adminModel: AdminModel;
+    menuModel: MenuModel;
     regionModel: RegionModel;
     applicationModel: ApplicationModel;
     organizationModel: OrganizationModel;
@@ -22,11 +28,19 @@ export class RbacStorage {
 
     init(force?: boolean): Promise<any> {
         force = force || false;
-        return this.sequelize.sync({ force: force, logging: config.isShowRdacInitLog });
+        return new Promise<any>((resolve, reject) => {
+            this.sequelize.sync({ force: force, logging: config.isShowRdacInitLog }).then(r => {
+                resolve(r);
+            }).catch(e => {
+                reject(e);
+            });
+        });
     }
 
     constructor() {
         this.sequelize = new Sequelize(config.rbacDatabase, config.rbacUsername, config.rbasPassword, config.rbacOptions);
+        this.adminModel = new AdminDefine().define(this.sequelize);
+        this.menuModel = new MenuDefine().define(this.sequelize);
         this.regionModel = new RegionDefine().define(this.sequelize);
         this.regionModel.hasMany(this.regionModel, {
             as: 'children',

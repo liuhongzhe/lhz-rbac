@@ -21,4 +21,4 @@ var change = {
     phone: 'AtPhone',
     email: 'AtEmail'
 };
-ct.crudTest('user', entity, change, ['password']);
+ct.crudTest('admin', entity, change, ['password']);

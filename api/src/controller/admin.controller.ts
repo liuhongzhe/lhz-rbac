@@ -3,17 +3,22 @@ import { InternalError } from 'restify-errors';
 import * as Sequelize from 'sequelize';
 
 import { ModelController } from './model-controller';
-import { UserModel } from '../storage/model/user.model';
-import { UserInstance } from '../storage/instance/user.instance';
-import { UserAttribute } from '../storage/attribute/user.attribute';
+import { AdminModel } from '../storage/model/admin.model';
+import { AdminInstance } from '../storage/instance/admin.instance';
+import { AdminAttribute } from '../storage/attribute/admin.attribute';
 
-export class UserController extends ModelController<UserModel, UserInstance, UserAttribute> {
+export class AdminController extends ModelController<AdminModel, AdminInstance, AdminAttribute> {
     constructor(protected modelName) {
         super(modelName, ['firstName', 'lastName', 'username', 'photo', 'phone', 'email'], [['lastName', 'asc'], ['firstName', 'asc']]);
+        let fo = {
+            attributes: {
+                exclude: ['password']
+            }
+        };
     }
 
-    protected customFindByIdFo(req: restify.Request, fo: Sequelize.FindOptions<UserAttribute>) {
-        return new Promise<Sequelize.FindOptions<UserAttribute>>(resolve => {
+    protected customFindByIdFo(req: restify.Request, fo: Sequelize.FindOptions<AdminAttribute>) {
+        return new Promise<Sequelize.FindOptions<AdminAttribute>>(resolve => {
             fo.attributes = {
                 exclude: ['password']
             };
@@ -21,8 +26,8 @@ export class UserController extends ModelController<UserModel, UserInstance, Use
         });
     }
 
-    protected customFindFo(req: restify.Request, fo: Sequelize.FindOptions<UserAttribute>) {
-        return new Promise<Sequelize.FindOptions<UserAttribute>>(resolve => {
+    protected customFindFo(req: restify.Request, fo: Sequelize.FindOptions<AdminAttribute>) {
+        return new Promise<Sequelize.FindOptions<AdminAttribute>>(resolve => {
             fo.attributes = {
                 exclude: ['password']
             };

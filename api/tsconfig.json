@@ -1,7 +1,10 @@
 {
-  "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
-    "removeComments": true
-  }
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "commonjs",
+        "removeComments": true,
+        "typeRoots": [
+            "./typings"
+        ]
+    }
 }

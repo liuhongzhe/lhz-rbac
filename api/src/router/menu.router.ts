@@ -1,12 +1,11 @@
 import { Router } from './router';
-import { UserController } from '../controller/user.controller';
+import { MenuController } from '../controller/menu.controller';
 
-export class UserRouter extends Router {
+export class MenuRouter extends Router {
     config() {
-        let entityName = 'user';
+        let entityName = 'menu';
         let root = '/' + entityName;
-        let controller = new UserController(entityName);
-        this.api.post(root + '/query-by-username-and-password', controller.queryByUsernameAndPassword.bind(controller));
+        let controller = new MenuController(entityName);
         this.api.get(root, controller.find.bind(controller));
         this.api.get(root + '/:id', controller.findById.bind(controller));
         this.api.post(root, controller.create.bind(controller));

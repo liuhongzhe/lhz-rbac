@@ -3,11 +3,13 @@ import { ApplicationController } from '../controller/application.controller';
 
 export class ApplicationRouter extends Router {
     config() {
-        let controller = new ApplicationController('application');
-        this.api.get('/application', controller.find.bind(controller));
-        this.api.get('/application/:id', controller.findById.bind(controller));
-        this.api.post('/application', controller.create.bind(controller));
-        this.api.put('/application/:id', controller.update.bind(controller));
-        this.api.del('/application/:id', controller.destroyById.bind(controller));
+        let entityName = 'application';
+        let root = '/' + entityName;
+        let controller = new ApplicationController(entityName);
+        this.api.get(root, controller.find.bind(controller));
+        this.api.get(root + '/:id', controller.findById.bind(controller));
+        this.api.post(root, controller.create.bind(controller));
+        this.api.put(root + '/:id', controller.update.bind(controller));
+        this.api.del(root + '/:id', controller.destroyById.bind(controller));
     }
 }

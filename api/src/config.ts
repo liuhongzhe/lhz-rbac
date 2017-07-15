@@ -4,11 +4,12 @@ export const config = {
     rbacUsername: 'rbac',
     rbasPassword: 'rbac',
     rbacOptions: {
-        dialect: 'mysql',
+        dialect: 'postgres',
         host: 'localhost',
-        port: 3306
+        port: 5432
     },
     isRdacForce: true,
     isShowRdacInitLog: false,
+    isInitData: true,
     rbacStorageKey: 'rbacs'
 }

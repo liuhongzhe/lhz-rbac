@@ -3,10 +3,13 @@ import { OrganizationController } from '../controller/organization.controller';
 
 export class OrganizationRouter extends Router {
     config() {
-        let controller = new OrganizationController('organization');
-        this.api.get('/organization/:id', controller.findById.bind(controller));
-        this.api.post('/organization', controller.create.bind(controller));
-        this.api.put('/organization/:id', controller.update.bind(controller));
-        this.api.del('/organization/:id', controller.destroyById.bind(controller));
+        let entityName = 'organization';
+        let root = '/' + entityName;
+        let controller = new OrganizationController(entityName);
+        this.api.get(root, controller.find.bind(controller));
+        this.api.get(root + '/:id', controller.findById.bind(controller));
+        this.api.post(root, controller.create.bind(controller));
+        this.api.put(root + '/:id', controller.update.bind(controller));
+        this.api.del(root + '/:id', controller.destroyById.bind(controller));
     }
 }

@@ -1,7 +1,6 @@
 import { Attribute } from './attribute';
-import { OrganizationAttribute } from './organization.attribute';
 
-export interface UserAttribute extends Attribute {
+export interface AdminAttribute extends Attribute {
     firstName: string;
     lastName: string;
     username: string;
@@ -9,5 +8,4 @@ export interface UserAttribute extends Attribute {
     photo?: string;
     phone?: string;
     email?: string;
-    organization?: OrganizationAttribute;
 }
