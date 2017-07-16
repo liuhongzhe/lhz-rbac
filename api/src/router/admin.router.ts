@@ -6,6 +6,7 @@ export class AdminRouter extends Router {
         let entityName = 'admin';
         let root = '/' + entityName;
         let controller = new AdminController(entityName);
+        this.api.post(root + '/query-by-username-and-password', controller.queryByUsernameAndPassword.bind(controller));
         this.api.get(root, controller.find.bind(controller));
         this.api.get(root + '/:id', controller.findById.bind(controller));
         this.api.post(root, controller.create.bind(controller));

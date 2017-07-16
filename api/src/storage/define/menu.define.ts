@@ -18,7 +18,7 @@ export class MenuDefine extends Define<MenuModel, MenuInstance, MenuAttribute> {
                 allowNull: false
             },
             path: {
-                type: Sequelize.STRING(20),
+                type: Sequelize.STRING(200),
                 allowNull: false
             },
             rank: {

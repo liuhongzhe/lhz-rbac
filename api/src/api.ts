@@ -8,9 +8,9 @@ import * as id from './init-data';
 let api = restify.createServer({
     name: 'lhz-rbac-api'
 });
-api.use(restify.plugins.queryParser());
-api.use(restify.plugins.bodyParser());
-api.use(restify.plugins.fullResponse());
+api.use(restify.queryParser());
+api.use(restify.bodyParser());
+api.use(restify.CORS());
 console.log('Restify init ok.');
 let rbacStorage = new RbacStorage();
 rbacStorage.init(config.isRdacForce).then(r => {
