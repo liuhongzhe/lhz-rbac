@@ -1,0 +1,39 @@
+<md-sidenav-container fullscreen>
+    <div fxFlexFill fxLayout="row" fxLayoutAlign="center center">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <md-card fxFlex="350px" fxFlex.xs="270px">
+                <md-card-header>
+                    <h1>Lhz-Rbac</h1>
+                </md-card-header>
+                <md-card-content fxLayout="column">
+                    <md-input-container>
+                        <span mdPrefix><md-icon>person</md-icon> &nbsp;</span>
+                        <input required maxlength="50" type="text" mdInput placeholder="用户名" formControlName="username">
+                        <md-error *ngIf="loginForm.get('username').hasError('required')">
+                            用户名 <strong>必填</strong>
+                        </md-error>
+                    </md-input-container>
+                    <md-input-container>
+                        <span mdPrefix><md-icon>vpn_key</md-icon> &nbsp;</span>
+                        <input required maxlength="50" type="{{showPassword?'text':'password'}}" mdInput placeholder="密码" formControlName="password">
+                        <button type="button" md-icon-button mdSuffix (click)="showPassword=!showPassword;" tabindex="-1">
+                            <md-icon>{{showPassword?'visibility':'visibility_off'}}</md-icon>
+                        </button>
+                        <md-error *ngIf="loginForm.get('password').hasError('required')">
+                            密码 <strong>必填</strong>
+                        </md-error>
+                    </md-input-container>
+                    <md-error *ngIf="loginError">
+                        用户名或密码错误
+                    </md-error>
+                    <md-error *ngIf="apiError">
+                        网络通信出错
+                    </md-error>
+                </md-card-content>
+                <md-card-actions fxLayout="column">
+                    <button md-raised-button color="primary" [disabled]="!loginForm.valid"><md-icon mdSuffix>subdirectory_arrow_left</md-icon> &nbsp;登录</button>
+                </md-card-actions>
+            </md-card>
+        </form>
+    </div>
+</md-sidenav-container>

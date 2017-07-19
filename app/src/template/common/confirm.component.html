@@ -1,0 +1,8 @@
+<h2 md-dialog-title>{{data.title}}</h2>
+<md-dialog-content>
+    {{data.message}}
+</md-dialog-content>
+<md-dialog-actions fxLayout="row" fxLayoutAlign="space-around center">
+    <button md-raised-button color="primary" [md-dialog-close]="true">确定</button>
+    <button md-raised-button color="accent" md-dialog-close>关闭</button>
+</md-dialog-actions>

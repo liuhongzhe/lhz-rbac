@@ -1,0 +1,19 @@
+<div fxFlexFill fxLayout="column" fxLayoutGap="5px">
+    <md-grid-list fxFlex [cols]="columnCount" gutterSize="5">
+        <md-grid-tile *ngFor="let model of models">
+            <md-grid-tile-header fxLayout="row">
+                <h3 fxFlex>{{model.name}}</h3>
+                <div fxFlex="0 0 auto">
+                    <button md-icon-button mdTooltip="编辑" (click)="update(model.id)"><md-icon>create</md-icon></button>
+                    <button md-icon-button color="warn" mdTooltip="删除" (click)="destroy(model)"><md-icon>clear</md-icon></button>
+                </div>
+            </md-grid-tile-header>
+            <img style="width:70%;height:70%;" src="{{model.logoThumbnail?serviceUrlRoot+'/'+model.logoThumbnail:'/assets/image/logo.png'}}"
+            />
+            <md-grid-tile-footer>
+                {{model.description}}
+            </md-grid-tile-footer>
+        </md-grid-tile>
+    </md-grid-list>
+    <md-paginator fxFlex="0 0 auto" [length]="count" [pageIndex]="pageIndex" [pageSize]="pageSize" (page)="find($event.pageIndex)"></md-paginator>
+</div>

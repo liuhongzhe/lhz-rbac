@@ -1,0 +1,12 @@
+<md-grid-list cols="1" rowHeight="4:3" (click)="fileInput.click()">
+    <input type="file" #fileInput hidden="true" (change)="logoSelected($event)">
+    <md-grid-tile color="warn">
+        <img fxFlexFill [src]="source?source:'/assets/image/logo.png'" />
+        <md-grid-tile-footer fxLayout="row">
+            <h3 fxFlex style="text-align:center;">点击选择</h3>
+            <a md-mini-fab color="warn" fxFlex="0 0 auto" (click)="clear($event)">
+                <md-icon>clear</md-icon>
+            </a>
+        </md-grid-tile-footer>
+    </md-grid-tile>
+</md-grid-list>
