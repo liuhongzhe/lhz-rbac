@@ -57,7 +57,7 @@ export abstract class Controller {
                 findOptions.limit = pagination.size;
             }
             if (pagination.index) {
-                findOptions.offset = pagination.index;
+                findOptions.offset = pagination.index * pagination.size;
             }
         }
         return findOptions;

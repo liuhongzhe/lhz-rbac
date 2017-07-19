@@ -4,9 +4,15 @@ var ct = require('../crud-test.js');
 
 var entity = {
     id: uuid.v1(),
-    name: 'atName'
+    logo: 'atLogo',
+    logoThumbnail: 'atLogoThumbnail',
+    name: 'atName',
+    description: 'atDescription'
 };
 var change = {
-    name: 'AtName'
+    logo: 'AtLogo',
+    logoThumbnail: 'AtLogoThumbnail',
+    name: 'AtName',
+    description: 'AtDescription'
 };
 ct.crudTest('application', entity, change);

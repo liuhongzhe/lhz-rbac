@@ -13,9 +13,18 @@ export class ApplicationDefine extends Define<ApplicationModel, ApplicationInsta
                 defaultValue: Sequelize.UUIDV1,
                 primaryKey: true
             },
+            logo: {
+                type: Sequelize.STRING(200)
+            },
+            logoThumbnail: {
+                type: Sequelize.STRING(200)
+            },
             name: {
                 type: Sequelize.STRING(50),
                 allowNull: false
+            },
+            description: {
+                type: Sequelize.STRING(2000)
             }
         });
     }

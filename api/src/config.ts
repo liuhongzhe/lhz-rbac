@@ -8,8 +8,10 @@ export const config = {
         host: 'localhost',
         port: 5432
     },
-    isRdacForce: false,
+    isRdacForce: true,
     isShowRdacInitLog: false,
     isInitData: true,
-    rbacStorageKey: 'rbacs'
+    rbacStorageKey: 'rbacs',
+    assetsDirectoryName: 'assets',
+    logoDirectoryName: 'logo',
 }

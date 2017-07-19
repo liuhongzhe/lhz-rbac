@@ -13,6 +13,9 @@ export class MenuDefine extends Define<MenuModel, MenuInstance, MenuAttribute> {
                 defaultValue: Sequelize.UUIDV1,
                 primaryKey: true
             },
+            icon: {
+                type: Sequelize.STRING(50)
+            },
             name: {
                 type: Sequelize.STRING(20),
                 allowNull: false
