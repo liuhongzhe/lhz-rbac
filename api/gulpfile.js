@@ -5,10 +5,10 @@ var gsm = require('gulp-sourcemaps');
 var gtsp = gts.createProject('tsconfig.json');
 
 var paths = {
-    outputRoot: 'dist',
+    outputRoot: 'api',
     api: {
         src: 'src/**/*.ts',
-        dest: 'dist'
+        dest: 'api'
     }
 }
 

@@ -6,6 +6,7 @@ export class RegionRouter extends Router {
         let entityName = 'region';
         let root = '/' + entityName;
         let controller = new RegionController(entityName);
+        this.api.get(root + '/find-by-parent-id', controller.findByParentId.bind(controller));
         this.api.get(root, controller.find.bind(controller));
         this.api.get(root + '/:id', controller.findById.bind(controller));
         this.api.post(root, controller.create.bind(controller));

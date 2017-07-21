@@ -1,11 +1,10 @@
-import { Model } from './model';
+import { LogoModel } from './logo-model';
 
-export interface User extends Model {
+export interface User extends LogoModel {
     firstName: string;
     lastName: string;
     username: string;
     password: string;
-    photo?: string;
     phone?: string;
     email?: string;
 }

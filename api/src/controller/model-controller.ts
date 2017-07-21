@@ -249,23 +249,28 @@ export abstract class ModelController<TModel extends Sequelize.Model<TInstance, 
     protected checkAndClearModelDirectory(id: string) {
         let directory = [config.assetsDirectoryName, this.modelName, id].join('/');
         return new Promise<void>((resolve, reject) => {
-            fs.readdir(directory, (err, files) => {
-                if (err) {
-                    reject(err);
-                }
-                else {
-                    if (files.length === 0) {
-                        fs.rmdir(directory, (err) => {
-                            if (err) {
-                                reject(err);
-                            }
-                            else {
-                                resolve();
-                            }
-                        });
+            if (fs.existsSync(directory)) {
+                fs.readdir(directory, (err, files) => {
+                    if (err) {
+                        reject(err);
                     }
-                }
-            });
+                    else {
+                        if (files.length === 0) {
+                            fs.rmdir(directory, (err) => {
+                                if (err) {
+                                    reject(err);
+                                }
+                                else {
+                                    resolve();
+                                }
+                            });
+                        }
+                    }
+                });
+            }
+            else {
+                resolve();
+            }
         });
     }
 
@@ -303,7 +308,6 @@ export abstract class ModelController<TModel extends Sequelize.Model<TInstance, 
     protected deleteModelDirectory(id: string) {
         return new Promise<void>((resolve, reject) => {
             let pathModel = [config.assetsDirectoryName, this.modelName, id].join('/');
-            debugger;
             if (fs.existsSync(pathModel) === true) {
                 rimraf(pathModel, e => {
                     if (e) {

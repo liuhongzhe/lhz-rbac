@@ -1,7 +1,10 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { MdSidenav } from '@angular/material';
+import { MdSidenav, MdIconRegistry } from '@angular/material';
 import { ObservableMedia, MediaChange } from '@angular/flex-layout';
+
+import { environment } from '../environments/environment';
 
 import { MenuService } from '../service/menu.service';
 import { Menu } from '../model/menu';
@@ -19,13 +22,11 @@ export class DesktopComponent implements OnInit {
     sidenavIsShowText: boolean;
     queryIsOpened: boolean;
     searchText: string;
-    get cache() {
-        return Cache;
-    }
+    serviceUrlRoot: string = environment.serviceUrlRoot;
 
     menus: Menu[];
 
-    constructor(private router: Router, private media: ObservableMedia, private menuService: MenuService) {
+    constructor(public cache: Cache, private router: Router, public media: ObservableMedia, private menuService: MenuService, private iconRegistry: MdIconRegistry, private sanitizer: DomSanitizer) {
         media.subscribe((change: MediaChange) => {
             this.setSidenavState();
         });
@@ -49,7 +50,7 @@ export class DesktopComponent implements OnInit {
     }
 
     logout() {
-        Cache.loginUser = null;
+        this.cache.loginUser = null;
         this.router.navigate(['']);
     }
 }

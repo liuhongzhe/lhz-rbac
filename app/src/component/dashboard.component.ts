@@ -7,7 +7,7 @@ import { Cache } from '../cache';
     templateUrl: '../template/dashboard.component.html'
 })
 export class DashboardComponent {
-    constructor() {
-        Cache.title = '桌面';
+    constructor(cache: Cache, ) {
+        cache.title = '桌面';
     }
 }

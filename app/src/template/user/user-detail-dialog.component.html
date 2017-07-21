@@ -1,0 +1,52 @@
+<div fxFlex="800px" fxFlex.md="500px" fxFlex.sm="350px" fxFlex.xs="200px">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <h2 md-dialog-title>用户明细</h2>
+        <md-dialog-content fxLayout="column" fxLayout.gt-md="row" style="padding:20px;">
+            <div fxFlexAlign="center" style="width:70%;height:80%;max-width:400px;max-height:300px;padding:20px;">
+                <image-upload [source]="logo?logo:'/assets/image/no_image.gif'" (logoChange)="onLogoChange($event)"></image-upload>
+            </div>
+            <div fxLayout="column" style="width:100%;">
+                <md-input-container>
+                    <input required maxlength="20" type="text" mdInput placeholder="名字" formControlName="firstName">
+                    <md-hint align="end">{{form.get('firstName').value?.length}} / 20</md-hint>
+                    <md-error *ngIf="form.get('firstName').hasError('required')">
+                        名字 <strong>必填</strong>
+                    </md-error>
+                </md-input-container>
+                <md-input-container>
+                    <input required maxlength="20" type="text" mdInput placeholder="姓氏" formControlName="lastName">
+                    <md-hint align="end">{{form.get('lastName').value?.length}} / 20</md-hint>
+                    <md-error *ngIf="form.get('lastName').hasError('required')">
+                        姓氏 <strong>必填</strong>
+                    </md-error>
+                </md-input-container>
+                <md-input-container>
+                    <input required maxlength="50" type="text" mdInput placeholder="用户名" formControlName="username">
+                    <md-hint align="end">{{form.get('username').value?.length}} / 50</md-hint>
+                    <md-error *ngIf="form.get('username').hasError('required')">
+                        用户名 <strong>必填</strong>
+                    </md-error>
+                </md-input-container>
+                <md-input-container *ngIf="!id">
+                    <input required maxlength="50" type="password" mdInput placeholder="密码" formControlName="password">
+                    <md-hint align="end">{{form.get('password').value?.length}} / 50</md-hint>
+                    <md-error *ngIf="form.get('password').hasError('required')">
+                        密码 <strong>必填</strong>
+                    </md-error>
+                </md-input-container>
+                <md-input-container>
+                    <input maxlength="20" type="text" mdInput placeholder="电话" formControlName="phone">
+                    <md-hint align="end">{{form.get('phone').value?.length}} / 20</md-hint>
+                </md-input-container>
+                <md-input-container>
+                    <input maxlength="50" type="email" mdInput placeholder="邮件" formControlName="email">
+                    <md-hint align="end">{{form.get('email').value?.length}} / 50</md-hint>
+                </md-input-container>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions fxLayout="row" fxLayoutAlign="space-around center">
+            <dialog-ok [disabled]="!form.valid"></dialog-ok>
+            <dialog-cancel></dialog-cancel>
+        </md-dialog-actions>
+    </form>
+</div>

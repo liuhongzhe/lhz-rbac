@@ -13,6 +13,12 @@ export class AdminDefine extends Define<AdminModel, AdminInstance, AdminAttribut
                 defaultValue: Sequelize.UUIDV1,
                 primaryKey: true
             },
+            logo: {
+                type: Sequelize.STRING(200)
+            },
+            logoThumbnail: {
+                type: Sequelize.STRING(200)
+            },
             firstName: {
                 type: Sequelize.STRING(20),
                 allowNull: false
@@ -28,9 +34,6 @@ export class AdminDefine extends Define<AdminModel, AdminInstance, AdminAttribut
             password: {
                 type: Sequelize.STRING(50),
                 allowNull: false
-            },
-            photo: {
-                type: Sequelize.STRING(100)
             },
             phone: {
                 type: Sequelize.STRING(20)

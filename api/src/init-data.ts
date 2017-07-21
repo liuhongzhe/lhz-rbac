@@ -15,43 +15,43 @@ export let init = function (rbacStorage: RbacStorage) {
                     console.log('Destroy menu ok.Count:' + count);
                     let menus = [];
                     menus.push({
-                        icon: 'home_black',
+                        icon: 'home',
                         name: '首页',
                         path: 'dashboard',
                         rank: 0
                     });
                     menus.push({
-                        icon: 'important_devices_black',
+                        icon: 'important_devices',
                         name: '应用管理',
                         path: 'application-management',
                         rank: 10
                     });
                     menus.push({
-                        icon: 'language_black',
+                        icon: 'language',
                         name: '行政区划管理',
                         path: 'region-management',
                         rank: 20
                     });
                     menus.push({
-                        icon: 'domain_black',
+                        icon: 'domain',
                         name: '机构管理',
                         path: 'organization-management',
                         rank: 30
                     });
                     menus.push({
-                        icon: 'person_black',
+                        icon: 'person',
                         name: '用户管理',
                         path: 'user-management',
                         rank: 40
                     });
                     menus.push({
-                        icon: 'style_black',
+                        icon: 'style',
                         name: '角色管理',
                         path: 'role-management',
                         rank: 50
                     });
                     menus.push({
-                        icon: 'person_outline_black',
+                        icon: 'person_outline',
                         name: '管理员管理',
                         path: 'admin-management',
                         rank: 910

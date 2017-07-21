@@ -13,16 +13,15 @@ export class OrganizationDefine extends Define<OrganizationModel, OrganizationIn
                 defaultValue: Sequelize.UUIDV1,
                 primaryKey: true
             },
+            logo: {
+                type: Sequelize.STRING(200)
+            },
+            logoThumbnail: {
+                type: Sequelize.STRING(200)
+            },
             name: {
                 type: Sequelize.STRING(50),
                 allowNull: false
-            },
-            code: {
-                type: Sequelize.STRING(50),
-                allowNull: false
-            },
-            logo: {
-                type: Sequelize.STRING(100)
             },
             phone: {
                 type: Sequelize.STRING(20)

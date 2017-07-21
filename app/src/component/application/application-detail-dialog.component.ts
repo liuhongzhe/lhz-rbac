@@ -50,10 +50,10 @@ export class ApplicationDetailDialogComponent extends DetailDialogComponent<Appl
 
     protected buildForm() {
         return this.fb.group({
-            logo: [''],
-            logoThumbnail: [''],
-            name: ['', Validators.required],
-            description: ['']
+            logo: [null],
+            logoThumbnail: [null],
+            name: [null, Validators.required],
+            description: [null]
         });
     }
 }

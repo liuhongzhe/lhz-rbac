@@ -12,7 +12,7 @@ export class AdminService extends ModelService<Admin> {
 
     queryByUsernameAndPassword(username: string, password: string) {
         return new Promise<Admin>((resolve, reject) => {
-            super.requestJson<Admin>('admin/query-by-username-and-password', RequestMethod.Post, {
+            super.requestJson<Admin>(this.modelName + '/query-by-username-and-password', RequestMethod.Post, {
                 username: username,
                 password: password
             }).then(user => {

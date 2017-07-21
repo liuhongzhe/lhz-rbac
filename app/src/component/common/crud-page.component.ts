@@ -13,21 +13,21 @@ export abstract class CrudPageComponent<TModel extends Model, TModelService exte
     protected dialogConfig: MdDialogConfig = {
         disableClose: true
     };
-    abstract getDialog(): ComponentType<TDialog>;
+    protected abstract getDialog(): ComponentType<TDialog>;
 
-    constructor(protected media: ObservableMedia, protected modelService: TModelService, protected snackBar: MdSnackBar, protected snackBarConfig: MdSnackBarConfig, protected dialog: MdDialog) {
-        super(media, modelService, snackBar, snackBarConfig, dialog);
-        Cache.createFunction = this.create.bind(this);
+    constructor(protected cache: Cache, protected media: ObservableMedia, protected modelService: TModelService, protected snackBar: MdSnackBar, protected snackBarConfig: MdSnackBarConfig, protected dialog: MdDialog) {
+        super(cache, media, modelService, snackBar, snackBarConfig, dialog);
+        this.cache.createFunction = this.create.bind(this);
     }
 
     ngOnDestroy() {
         super.ngOnDestroy();
-        Cache.createFunction = null;
+        this.cache.createFunction = null;
     }
 
-    create() {
+    create(data: any) {
         let dialog = this.dialog.open(this.getDialog(), this.dialogConfig);
-        dialog.componentInstance.showInfo();
+        dialog.componentInstance.showInfo(null, data);
         dialog.afterClosed().subscribe(r => {
             if (r) {
                 this.find();

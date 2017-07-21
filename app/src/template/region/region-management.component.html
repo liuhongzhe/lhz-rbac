@@ -1,0 +1,18 @@
+<div fxFlexFill fxLayout="column" fxLayoutGap="5px">
+    <md-grid-list fxFlex [cols]="columnCount" rowHeight="2:1" gutterSize="5">
+        <md-grid-tile fxLayout="column" *ngFor="let model of models">
+            <md-card role="group" fxFlex fxFlexAlign="stretch" fxLayout="column">
+                <md-card-header fxFlex>
+                    <md-card-title>{{model.name}}</md-card-title>
+                    <md-card-subtitle>{{model.code}}</md-card-subtitle>
+                </md-card-header>
+                <md-card-actions fxFlexAlign="end" fxLayoutGap="5px">
+                    <button md-mini-fab mdTooltip="进入" (click)="enter(model)"><md-icon>subdirectory_arrow_left</md-icon></button>
+                    <button md-mini-fab mdTooltip="编辑" (click)="update(model.id)"><md-icon>create</md-icon></button>
+                    <button md-mini-fab color="warn" mdTooltip="删除" (click)="destroy(model)"><md-icon>delete_forever</md-icon></button>
+                </md-card-actions>
+            </md-card>
+        </md-grid-tile>
+    </md-grid-list>
+    <md-paginator fxFlex="0 0 auto" [length]="count" [pageIndex]="pageIndex" [pageSize]="pageSize" (page)="find($event.pageIndex)"></md-paginator>
+</div>

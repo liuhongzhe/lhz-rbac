@@ -14,10 +14,9 @@ import { ApplicationDetailDialogComponent } from './application-detail-dialog.co
     templateUrl: '../../template/application/application-management.component.html'
 })
 export class ApplicationManagementComponent extends CrudPageComponent<Application, ApplicationService, ApplicationDetailDialogComponent> {
-    constructor(protected media: ObservableMedia, private application: ApplicationService, protected snackBar: MdSnackBar, protected snackBarConfig: MdSnackBarConfig, protected dialog: MdDialog) {
-        super(media, application, snackBar, snackBarConfig, dialog);
-        Cache.title = '应用管理';
-        // this.dialogConfig.width = '500px';
+    constructor(protected cache: Cache, protected media: ObservableMedia, private application: ApplicationService, protected snackBar: MdSnackBar, protected snackBarConfig: MdSnackBarConfig, protected dialog: MdDialog) {
+        super(cache, media, application, snackBar, snackBarConfig, dialog);
+        this.cache.title = '应用管理';
     }
 
     getName(application: Application) {

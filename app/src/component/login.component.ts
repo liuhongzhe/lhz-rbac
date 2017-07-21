@@ -19,7 +19,7 @@ export class LoginComponent {
     loginError: boolean = false;
     apiError: boolean = false;
 
-    constructor(private router: Router, private fb: FormBuilder, private adminService: AdminService) {
+    constructor(private cache: Cache, private router: Router, private fb: FormBuilder, private adminService: AdminService) {
         this.loginForm = this.fb.group({
             username: ['', Validators.required],
             password: ['', Validators.required]
@@ -35,7 +35,7 @@ export class LoginComponent {
             setTimeout(() => {
                 this.blockUi.stop();
                 if (user) {
-                    Cache.loginUser = user;
+                    this.cache.loginUser = user;
                     this.router.navigate(['desktop']);
                 }
                 else {

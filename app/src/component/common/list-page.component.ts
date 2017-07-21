@@ -17,9 +17,6 @@ export abstract class ListPageComponent<TModel extends Model, TModelService exte
     @BlockUI() private blockUi: NgBlockUI;
 
     serviceUrlRoot: string = environment.serviceUrlRoot;
-    get urlTimestamp() {
-        return '&timestamp=' + new Date().valueOf();
-    }
     models: TModel[];
     text: string;
     columnCount: number = 1;
@@ -28,7 +25,7 @@ export abstract class ListPageComponent<TModel extends Model, TModelService exte
     pageSize: number = 5;
     count: number;
 
-    invokeFind(pagination?: Pagination, text?: string) {
+    protected invokeFind(pagination?: Pagination, text?: string) {
         return new Promise<FindWithCount<TModel>>((resolve, reject) => {
             this.modelService.find(pagination, text).then(r => {
                 resolve(r);
@@ -38,7 +35,7 @@ export abstract class ListPageComponent<TModel extends Model, TModelService exte
         });
     }
 
-    abstract getName(model: TModel): string;
+    protected abstract getName(model: TModel): string;
 
     invokeDestroy(model: TModel) {
         return new Promise<boolean>((resolve, reject) => {
@@ -50,8 +47,8 @@ export abstract class ListPageComponent<TModel extends Model, TModelService exte
         });
     }
 
-    constructor(protected media: ObservableMedia, protected modelService: TModelService, protected snackBar: MdSnackBar, protected snackBarConfig: MdSnackBarConfig, protected dialog: MdDialog) {
-        Cache.findFunction = this.search.bind(this);
+    constructor(protected cache: Cache, protected media: ObservableMedia, protected modelService: TModelService, protected snackBar: MdSnackBar, protected snackBarConfig: MdSnackBarConfig, protected dialog: MdDialog) {
+        this.cache.findFunction = this.search.bind(this);
         media.subscribe((change: MediaChange) => {
             this.mqChange();
         });
@@ -86,7 +83,7 @@ export abstract class ListPageComponent<TModel extends Model, TModelService exte
     }
 
     ngOnDestroy() {
-        Cache.findFunction = null;
+        this.cache.findFunction = null;
     }
 
     find(pageIndex?: number) {
@@ -123,6 +120,7 @@ export abstract class ListPageComponent<TModel extends Model, TModelService exte
         if (this.allowDelete === true) {
             this.dialog.open(ConfirmComponent, {
                 disableClose: true,
+                width: '400px',
                 data: {
                     title: '删除确认',
                     message: '确认删除【' + this.getName(model) + '】？'

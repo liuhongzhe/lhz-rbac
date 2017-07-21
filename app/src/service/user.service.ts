@@ -12,7 +12,7 @@ export class UserService extends ModelService<User> {
 
     queryByUsernameAndPassword(data: any): Promise<User> {
         return new Promise<User>((resolve, reject) => {
-            super.requestJson<User>('user/query-by-username-and-password', RequestMethod.Post, data).then(user => {
+            super.requestJson<User>(this.modelName + '/query-by-username-and-password', RequestMethod.Post, data).then(user => {
                 resolve(user);
             }).catch(e => {
                 reject(e);

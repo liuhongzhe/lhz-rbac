@@ -34,6 +34,7 @@ export class ApplicationController extends ModelController<ApplicationModel, App
 
     protected beforeUpdate(id: string, data: any) {
         return new Promise<void>((resolve, reject) => {
+            debugger;
             if (data.logoBase64) {
                 this.saveLogo(id, data.logoBase64).then(r => {
                     if (r) {

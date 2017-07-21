@@ -10,8 +10,9 @@ import { ModelService } from '../../service/model-service';
 export abstract class DetailDialogComponent<TModel extends Model, TModelService extends ModelService<TModel>, TDialog> {
     @BlockUI() protected blockUi: NgBlockUI;
 
-    protected id?: string;
-    protected form: FormGroup;
+    id?: string;
+    data?: any;
+    form: FormGroup;
 
     protected invokeFindById(id: string) {
         return new Promise<TModel>((resolve, reject) => {
@@ -69,8 +70,9 @@ export abstract class DetailDialogComponent<TModel extends Model, TModelService 
 
     constructor(protected modelService: TModelService, protected snackBar: MdSnackBar, protected snackBarConfig: MdSnackBarConfig, protected dialogRef: MdDialogRef<TDialog>) { }
 
-    showInfo(id?: string) {
+    showInfo(id?: string, data?: any) {
         this.id = id;
+        this.data = data;
         this.form = this.buildForm();
         this.blockUi.start('加载中。。。');
         if (id) {

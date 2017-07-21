@@ -1,0 +1,18 @@
+<div fxFlex.gt-sm="500px" fxFlex.sm="350px" fxFlex.xs="200px">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <h2 md-dialog-title>角色明细</h2>
+        <md-dialog-content fxLayout="column" style="padding:20px;">
+            <md-input-container>
+                <input required maxlength="20" type="text" mdInput placeholder="名称" formControlName="name">
+                <md-hint align="end">{{form.get('name').value?.length}} / 20</md-hint>
+                <md-error *ngIf="form.get('name').hasError('required')">
+                    名称 <strong>必填</strong>
+                </md-error>
+            </md-input-container>
+        </md-dialog-content>
+        <md-dialog-actions fxLayout="row" fxLayoutAlign="space-around center">
+            <dialog-ok [disabled]="!form.valid"></dialog-ok>
+            <dialog-cancel></dialog-cancel>
+        </md-dialog-actions>
+    </form>
+</div>

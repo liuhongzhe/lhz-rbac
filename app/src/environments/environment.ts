@@ -6,6 +6,6 @@
 export const environment = {
     production: false,
     serviceUrlRoot: "http://localhost:11001",
-    showServiceLog: false,
+    showServiceLog: true,
     blockUiDelay: 500
 };

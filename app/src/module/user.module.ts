@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { MaterialImportModule } from './material-import.module';
+import { CommonImportModule } from './common-import.module';
 import { UserRouting } from '../routing/user.routing';
 
 import { UserManagementComponent } from '../component/user/user-management.component';
@@ -10,18 +8,16 @@ import { UserDetailDialogComponent } from '../component/user/user-detail-dialog.
 import { UserService } from '../service/user.service';
 
 @NgModule({
-    declarations: [
-        UserManagementComponent
-        // UserDetailDialogComponent
-    ],
     imports: [
-        CommonModule,
-        FlexLayoutModule,
-        MaterialImportModule,
+        CommonImportModule,
         UserRouting
     ],
+    declarations: [
+        UserManagementComponent,
+        UserDetailDialogComponent
+    ],
     entryComponents: [
-        // UserDetailDialogComponent
+        UserDetailDialogComponent
     ],
     providers: [
         UserService

@@ -10,7 +10,11 @@ let api = restify.createServer({
 });
 api.use(restify.queryParser());
 api.use(restify.bodyParser());
-api.use(restify.CORS());
+api.use(restify.CORS({
+    origins: [
+        'http://localhost:4200'
+    ]
+}));
 console.log('Restify init ok.');
 let rbacStorage = new RbacStorage();
 rbacStorage.init(config.isRdacForce).then(r => {

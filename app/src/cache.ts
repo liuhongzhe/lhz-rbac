@@ -1,14 +1,16 @@
 import { User } from './model/user';
 
 export class Cache {
-    static get loginUser(): User {
+    public get loginUser(): User {
         return <User>JSON.parse(sessionStorage.getItem('login-user'));
     }
-    static set loginUser(user: User) {
+    public set loginUser(user: User) {
         sessionStorage.setItem('login-user', JSON.stringify(user));
     }
-    static title: string;
-    static createFunction: Function;
-    static findFunction: Function;
-    static searchPlaceholder: string = '请输入查询内容';
+    public title: string;
+    public backFunction: Function;
+    public createFunction: Function;
+    public createFunctionData: any;
+    public findFunction: Function;
+    public searchPlaceholder: string = '请输入查询内容';
 }

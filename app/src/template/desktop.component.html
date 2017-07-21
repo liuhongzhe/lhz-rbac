@@ -12,12 +12,15 @@
         <div fxFlex="0 0 auto">
             <md-toolbar>
                 <div class="flex-contaner" fxFlexFill fxLayout="row" fxLayoutAlign="center center">
+                    <div fxFlex="0 0 auto" *ngIf="cache.backFunction">
+                        <button md-mini-fab color="primary" mdTooltip="返回" (click)="cache.backFunction()"><md-icon>arrow_back</md-icon></button>
+                    </div>
                     <div class="flex-item" fxFlex="0 0 auto">
                         <button md-icon-button fxHide.gt-xs="true" (click)="sidenavToggle()"><md-icon>menu</md-icon></button>
                         <span>{{cache.title}}</span>
                     </div>
                     <div class="flex-item" fxFlex fxLayoutGap="10px" fxLayoutAlign="center">
-                        <button *ngIf="cache.createFunction" md-mini-fab color="primary" mdTooltip="新建" (click)="cache.createFunction()"><md-icon>add</md-icon></button>
+                        <button *ngIf="cache.createFunction" md-mini-fab color="primary" mdTooltip="新建" (click)="cache.createFunction(cache.createFunctionData)"><md-icon>add</md-icon></button>
                         <button *ngIf="cache.findFunction" md-mini-fab color="primary" mdTooltip="刷新" (click)="cache.findFunction()"><md-icon>refresh</md-icon></button>
                     </div>
                     <div *ngIf="cache.findFunction&&media.isActive('gt-sm')" class="flex-item" fxFlex="0 0 auto" fxLayoutGap="10px" fxLayoutAlign="center center">
@@ -29,8 +32,10 @@
                         <button *ngIf="!queryIsOpened" md-icon-button (click)="queryIsOpened=!queryIsOpened"><md-icon>search</md-icon></button>
                     </div>
                     <div class="flex-item" fxFlex="0 0 auto">
-                        <button md-icon-button [mdMenuTriggerFor]="accountMenu" fxHide.gt-xs="true"><md-icon>account_circle</md-icon></button>
-                        <button md-button [mdMenuTriggerFor]="accountMenu" fxHide.lt-sm="true"><md-icon>account_circle</md-icon><span>{{cache.loginUser.lastName + ' ' + cache.loginUser.firstName}}</span></button>
+                        <button md-button [mdMenuTriggerFor]="accountMenu">
+                            <md-icon>account_box</md-icon>
+                            <span fxHide.lt-sm>{{cache.loginUser.lastName + ' ' + cache.loginUser.firstName}}</span>
+                        </button>
                         <md-menu #accountMenu="mdMenu">
                             <button md-menu-item>
                                 <md-icon>vpn_key</md-icon>
@@ -49,11 +54,10 @@
             <div class="flex-item" fxFlex style="padding:10px;">
                 <router-outlet></router-outlet>
             </div>
-            <md-toolbar fxFlex="0 0 auto">
-                <div fxFlexFill fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="center center" style="font-size:x-small;">
-                    <div fxFlex="0 0 auto">&copy; 劉宏哲 2017</div>
-                    <div fxFlex></div>
-                    <div fxFlex="0 0 auto">系统技术问题请联系刘宏哲 18240090928</div>
+            <md-toolbar>
+                <div fxFlexFill fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between center" style="font-size:12px;line-height:15px;">
+                    <div>&copy; 劉宏哲 2017</div>
+                    <div>系统技术问题请联系刘宏哲 18240090928</div>
                 </div>
             </md-toolbar>
         </div>

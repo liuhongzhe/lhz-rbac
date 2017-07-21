@@ -11,7 +11,11 @@ const desktopRoutes: Routes = [
             { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
             { path: 'dashboard', loadChildren: '../module/dashboard.module#DashboardModule' },
             { path: 'application-management', loadChildren: '../module/application.module#ApplicationModule' },
-            { path: 'user-management', loadChildren: '../module/user.module#UserModule' }
+            { path: 'region-management', loadChildren: '../module/region.module#RegionModule' },
+            { path: 'organization-management', loadChildren: '../module/organization.module#OrganizationModule' },
+            { path: 'user-management', loadChildren: '../module/user.module#UserModule' },
+            { path: 'role-management', loadChildren: '../module/role.module#RoleModule' },
+            { path: 'admin-management', loadChildren: '../module/admin.module#AdminModule' }
         ]
     }
 ];

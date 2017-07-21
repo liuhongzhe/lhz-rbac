@@ -1,11 +1,10 @@
-import { Attribute } from './attribute';
+import { LogoAttribute } from './logo-attribute';
 
-export interface AdminAttribute extends Attribute {
+export interface AdminAttribute extends LogoAttribute {
     firstName: string;
     lastName: string;
     username: string;
     password: string;
-    photo?: string;
     phone?: string;
     email?: string;
 }
