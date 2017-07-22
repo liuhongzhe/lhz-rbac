@@ -1,8 +1,8 @@
 <md-sidenav-container fullscreen>
     <md-sidenav #sidenav [mode]="sidenavMode" [opened]="sidenavIsOpen">
         <md-nav-list>
-            <img md-list-avatar fxFlexFill src="/assets/image/logo.png" alt="...">
-            <md-list-item routerLinkActive="mat-list-item-focus" routerLink="{{menu.path}}" *ngFor="let menu of menus" mdTooltip="{{sidenavIsShowText?null:menu.name}}">
+            <img style="width:100%;" src="/assets/image/logo.png" alt="logo加载中...">
+            <md-list-item routerLinkActive="mat-list-item-focus" (click)="route(menu.path)" *ngFor="let menu of menus" mdTooltip="{{sidenavIsShowText?null:menu.name}}">
                 <md-icon md-list-icon *ngIf="menu.icon">{{menu.icon}}</md-icon>
                 <a md-line *ngIf="sidenavIsShowText">{{menu.name}}</a>
             </md-list-item>

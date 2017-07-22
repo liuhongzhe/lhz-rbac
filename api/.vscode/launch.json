@@ -8,7 +8,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceRoot}/dist/api.js"
+            "program": "${workspaceRoot}/api/api.js"
         }
     ]
 }

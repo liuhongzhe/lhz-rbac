@@ -2,7 +2,7 @@
 
 var request = require('request');
 
-var config = require('../dist/config').config;
+var config = require('../api/config').config;
 
 module.exports = function () {
     var curdTest = function (entityName, entity, change, excludes) {

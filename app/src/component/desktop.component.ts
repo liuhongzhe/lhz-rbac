@@ -49,6 +49,13 @@ export class DesktopComponent implements OnInit {
         this.sidenavIsShowText = !(this.media.isActive('sm') || this.media.isActive('md'));
     }
 
+    route(path) {
+        this.router.navigate(['desktop', path]);
+        if (!this.sidenavMode) {
+            this.sidenavToggle();
+        }
+    }
+
     logout() {
         this.cache.loginUser = null;
         this.router.navigate(['']);

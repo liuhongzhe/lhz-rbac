@@ -2,7 +2,7 @@
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <h2 md-dialog-title>用户明细</h2>
         <md-dialog-content fxLayout="column" fxLayout.gt-md="row" style="padding:20px;">
-            <div fxFlexAlign="center" style="width:70%;height:80%;max-width:400px;max-height:300px;padding:20px;">
+            <div fxFlexAlign="center" style="width:70%;max-width:400px;padding:20px;">
                 <image-upload [source]="logo?logo:'/assets/image/no_image.gif'" (logoChange)="onLogoChange($event)"></image-upload>
             </div>
             <div fxLayout="column" style="width:100%;">

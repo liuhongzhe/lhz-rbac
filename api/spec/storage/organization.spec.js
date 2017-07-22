@@ -4,16 +4,16 @@ var ct = require('../crud-test.js');
 
 var entity = {
     id: uuid.v1(),
-    name: 'atName',
-    code: 'atCode',
     logo: 'atLogo',
+    logoThumbnail: 'atLogoThumbnail',
+    name: 'atName',
     phone: 'atPhone',
     address: 'atAddress'
 };
 var change = {
-    name: 'AtName',
-    code: 'AtCode',
     logo: 'AtLogo',
+    logoThumbnail: 'AtLogoThumbnail',
+    name: 'AtName',
     phone: 'AtPhone',
     address: 'AtAddress'
 };

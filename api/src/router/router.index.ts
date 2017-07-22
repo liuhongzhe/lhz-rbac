@@ -10,7 +10,7 @@ import { UserRouter } from './user.router';
 import { RoleRouter } from './role.router';
 
 export let init = function (api: restify.Server) {
-    api.get(/\/assets\/?.*/, restify.serveStatic({
+    api.get(/\/assets\/?.*/, restify.plugins.serveStatic({
         directory: path.join(__dirname, '../', '../')
     }));
     new AdminRouter(api).config();

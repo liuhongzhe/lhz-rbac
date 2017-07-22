@@ -1,4 +1,5 @@
 import * as restify from 'restify';
+import * as rcm from 'restify-cors-middleware';
 
 import { config } from './config';
 import * as ri from './router/router.index';
@@ -8,13 +9,15 @@ import * as id from './init-data';
 let api = restify.createServer({
     name: 'lhz-rbac-api'
 });
-api.use(restify.queryParser());
-api.use(restify.bodyParser());
-api.use(restify.CORS({
-    origins: [
-        'http://localhost:4200'
-    ]
-}));
+api.use(restify.plugins.queryParser());
+api.use(restify.plugins.bodyParser());
+let cors = rcm({
+    origins: ['*'],
+    allowHeaders: ['API-Token'],
+    exposeHeaders: ['API-Token-Expiry']
+});
+api.pre(cors.preflight);
+api.use(cors.actual);
 console.log('Restify init ok.');
 let rbacStorage = new RbacStorage();
 rbacStorage.init(config.isRdacForce).then(r => {
